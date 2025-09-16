@@ -1,0 +1,108 @@
+body{
+        font-family: "Noto Sans JP", sans-serif;
+        display : flex;
+        flex-direction: column;
+        height: 100vh;
+}
+    
+/*Navbar*/
+.navbar{
+    height : 5rem;
+    background-color : white;
+}
+
+.fa-compass-drafting{
+    color : rgb(181, 26, 26);
+    font-size : 2rem;
+}
+
+.nav-link{
+    color : black !important;
+}
+
+/*Footer*/
+.f-info-links a{
+    text-decoration: none;
+    color : #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration : underline;
+}
+
+.f-info-links{
+    width : 100%;
+    font-size : 1.5rem;
+}
+.f-info-socials , .f-info-brands{
+    width : 100%;
+    display : flex;
+    align-items : center;
+    justify-content: center;
+}
+.f-info-socials{
+    margin-right : 1rem;
+}
+.f-info{
+    text-align : center;
+    height : 10rem;
+    display : flex;
+    flex-wrap : wrap;
+    justify-content : center;
+    align-items : space-evenly;
+    background-color: #ebebeb;
+}
+
+/*Card styling*/
+.card-text{
+    display : flex;
+    flex-wrap : wrap;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+}
+.listing-card{
+    border : none!important;
+    box-shadow: none !important;
+    margin-bottom : 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width : 100% !important;
+    object-fit : cover !important;
+}
+.card-body{
+    padding : 0 !important;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity :0.2;
+    background-color: white;
+}
+
+/*New Route */
+
+.btn{
+    margin-bottom : 2rem;
+    background-color: #fe424d ;
+}
+
+/*Show Route */
+.btns{
+    display: flex;
+}
+.del-btn{
+    background-color: black!important;
+}
+.show-card{
+    padding-left: 0;
+    padding-right : 0;
+}
+
+/*Map*/
+#map{
+    height : 450px;
+    width : 100vh;
+    margin-bottom: 2rem;
+}

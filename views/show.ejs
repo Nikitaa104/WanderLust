@@ -1,0 +1,83 @@
+<%layout("layouts/boilerplate")%>
+<body>
+    <script> const mapToken = "<%= process.env.MAP_TOKEN %>";
+            const listing = <%- JSON.stringify(listing)%>;
+</script>
+    <div class="row">
+        <div class="col-6 offset-3 mt-4">
+            <h2><%=listing.title%></h2>
+            </div><div class = "col-6 offset-3 show-card listing-card"><img src="<%=listing.image.url%>" class="card-img-top show-img" alt="Loading...">
+            </div>
+    </div>
+    <div class="card-body col-8 offset-3">
+        <p class = "card-text">
+            <ul>
+        <p>Owned by : <b><i><%= listing.owner.username%></i></b></p>
+        <li><%=listing.title%></li>
+        <li><%=listing.description%></li>
+        <li>&#8377;<%=listing.price.toLocaleString("en-IN")%></li>
+        <li><%=listing.location%></li>
+        <li><%=listing.country%></li>
+    </ul>
+        </p>
+        <% if(currUser && listing.owner._id) {%>
+    </div>
+    <div class="col-1 btns offset-3"><a href = "/listings/<%= listing._id%>/edit" class="btn btn-danger" >Edit</a>
+    </div>
+
+    <div class="col-1 btns offset-3"> <form method="POST" action = "/listings/<%= listing._id%>?_method=DELETE">
+        <button class = "btn btn-dark del-btn">Delete</button>
+    </form>
+    <%}%></div>
+    <!--Review Form-->
+    <hr>
+    <% if (currUser) { %>
+    <div class = "col-6 offset-3 mt-4 mb-3">
+        <form action = "/listings/<%=listing._id%>/reviews" method = "POST" class = "needs-validation" novalidate >
+            <h3>Give Review :</h3>
+            <div>
+                <label for = "Rating" class="form-label">Rating</label>
+                <input type = "range" min = "1" max = "5" id = "rating" name ="review[rating]" class = "form-range">
+<br>
+                    <label for = "comment">Comment</label>
+                    <br>
+                    <textarea name = "review[comment]"id = "comment" rows = "2" cols = "15"  class = "form-control" required></textarea>
+                    <div class="invalid-feedback">Comment cannot be empty.</div>
+                </div>
+            </div>
+            <button class=" btn btn-success mt-3 offset-3" >Submit</button>
+        </form> 
+        <hr>
+        <%}%>
+        <% if (listing.reviews.length > 0) { %>
+    <div class = "offset-3">
+        <div class="row g-3">
+            <p><b>View reviews</b></p>
+    <% for (let review of listing.reviews) { %>
+        <div class="col-md-6">
+            <div class="card review-card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3 ms-3 me-3"><%= review.author ? review.author.username : "Deleted User" %></h5>
+                    <p class="card-text mb-3 ms-3 me-3">
+                        <%= review.comment %>
+                        <br>
+                        <p class="card-text mb-3 ms-3 me-3">
+                        <%= review.rating %>
+                </div>
+                <form method = "POST" action = "/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                <button class = "btn btn-sm btn-dark mb-2 ms-2">Delete</button>
+            </form>
+            
+        </div>
+        </div>
+    <% } %>
+    </div>
+    <%}%>
+        </div>
+    <div class = "col-6 offset-3">
+    <h2>Where you'll be</h2>
+    <div id="map"></div>
+    </div>
+</div>
+<script src = "/js/map.js"></script>
+</body>

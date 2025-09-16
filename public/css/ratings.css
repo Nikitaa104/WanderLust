@@ -1,0 +1,34 @@
+
+/*Container for stars*/
+.starability-slot {
+  display: inline-flex;       /* puts stars in one line */
+  gap: 5px;                   /* spacing between stars */
+  border: none;               /* remove border */
+  padding: 0;
+  margin: 0;
+}
+
+/* Hide the raw radio buttons */
+.starability-slot input[type="radio"] {
+  display: none;
+}
+
+/* Style the labels as stars */
+.starability-slot label {
+  font-size: 2rem;            /* star size */
+  color: #ccc;                /* default gray */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+/* Hover effect (turn gold on hover) */
+.starability-slot label:hover,
+.starability-slot label:hover ~ label {
+  color: gold;
+}
+
+/* Checked effect (persist gold when selected) */
+.starability-slot input[type="radio"]:checked ~ label {
+  color: gold;
+}
+
