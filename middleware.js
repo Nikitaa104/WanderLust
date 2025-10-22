@@ -3,7 +3,7 @@ const Review = require("./models/review");
 const {listingSchema , reviewSchema} = require("./schema.js");
 const expressError = require("./utils/expressError.js");
 
-// joi validation middleware:
+// joi Validation Middleware:
 module.exports.validateListing = (req , res, next)=>{
     let {error} = listingSchema.validate(req.body);
     if(error){
